@@ -1,18 +1,26 @@
 <script>
+import { VueFlip } from 'vue-flip';
 export default {
   props: {
-    info: Object
+    info: Object,
+  },
+  components: {
+    'vue-flip': VueFlip
   }
-}
+};
 </script>
 
 <template>
-  <div class="container text-center">
-    <img :src="info.image" :alt="info.name">
-    <h4>{{ info.name }}</h4>
-    <div>{{ info.status }}</div>
-    <div class="font-weight-bold">{{ info.species }}</div>
-  </div>
+  <vue-flip active-click="true" width="300px" height="300px">
+    <template v-slot:front class="front">
+      <img :src="info.image" :alt="info.name">
+    </template>
+    <template v-slot:back class="back">
+      <h4>{{ info.name }}</h4>
+      <div>{{ info.status }}</div>
+      <div class="font-weight-bold">{{ info.species }}</div>
+    </template>
+  </vue-flip>
 </template>
 
 <style lang="scss" scoped>
