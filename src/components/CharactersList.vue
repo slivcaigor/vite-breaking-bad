@@ -15,13 +15,15 @@ export default {
 </script>
 
 <template>
-  <section class="container">
-    <div class="row">
+  <section class="wrapper">
+    <div class="d-flex flex-wrap">
       <div v-for="character in store.characterList" :key="character.id">
         <CharacterCard :info="character" />
       </div>
     </div>
   </section>
+
+
 </template>
 
 <style lang="scss" scoped>

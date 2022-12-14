@@ -2,10 +2,14 @@
 import { store } from "./store.js";
 import axios from 'axios';
 import CharactersList from './components/CharactersList.vue'
+import AppHeader from './components/AppHeader.vue'
+
+
 
 export default {
   components: {
-    CharactersList
+    CharactersList,
+    AppHeader,
   },
   data() {
     return {
@@ -29,11 +33,21 @@ export default {
 </script>
 
 <template>
-  <CharactersList />
+  <header>
+    <AppHeader />
+  </header>
+
+  <main>
+    <CharactersList />
+  </main>
+
 </template>
 
 <style lang="scss" scoped>
 @use './styles/general.scss' as *;
-@use './styles/partials/mixins.scss' as *;
-@use './styles/partials/variables' as *;
+
+main {
+  background-color: #44281d;
+  padding: 2em 0;
+}
 </style>
