@@ -4,8 +4,6 @@ import axios from 'axios';
 import CharactersList from './components/CharactersList.vue'
 import AppHeader from './components/AppHeader.vue'
 
-
-
 export default {
   components: {
     CharactersList,
@@ -17,14 +15,21 @@ export default {
     }
   },
   methods: {
-    getCharacters() {
+    getCharacters(status) {
+
+      let myUrl = store.apiURL;
+
+      if (status) {
+        myUrl += `?${store.apiStatusParameter}=${status}`
+      }
+
       axios
-        .get(store.apiURL)
+        .get(myUrl)
         .then(res => { store.characterList = res.data.results; })
         .catch(err => {
           console.log("Errori", err);
         })
-    }
+    },
   },
   mounted() {
     this.getCharacters();
@@ -37,7 +42,7 @@ export default {
     <div class="ms_wrapper">
 
       <header>
-        <AppHeader />
+        <AppHeader @performSearch="getCharacters" />
       </header>
 
       <main>
@@ -53,6 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 @use './styles/general.scss' as *;
+@use './styles/partials/variables' as *;
 
 .ms_boxed {
   background-image: url("./assets/img/jumbo.jpg");
@@ -60,13 +66,13 @@ export default {
 
   .ms_wrapper {
     width: 95%;
-    height: 90vh;
+    min-height: 90vh;
     margin: 0 auto;
     backdrop-filter: blur(0) saturate(180%);
     background-color: rgba(17, 25, 40, 0.75);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.125);
-    box-shadow: 0px 0px 10px 5px #2EA44F;
+    box-shadow: 0px 0px 10px 5px $accent;
   }
 }
 </style>

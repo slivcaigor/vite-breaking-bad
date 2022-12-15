@@ -1,18 +1,29 @@
 <script>
+import { store } from "../store.js";
+
 export default {
+  data() {
+    return {
+      store,
+    }
+  },
   methods: {
-    // takes an imgPath parameter and returns the full URL of an image file based on the given imgPath
+    filterCharacters(status) {
+      this.$emit('performSearch', status);
+    },
     getImageURL: function (imgPath) {
       // uses the URL constructor to create a new URL object based on the imgPath parameter and the import.meta.url property
       return new URL(`../assets/${imgPath}`, import.meta.url).href;
     },
   },
-}
+};
+
+
 </script>
 
 <template>
   <section class="d-flex align-items-center justify-content-around mt-4">
-    <a href="/">
+    <a href="!#">
       <!-- return the full URL of the image file -->
       <img :src="getImageURL(`logo.png`)" alt="Rick and Morty Logo">
     </a>
@@ -22,8 +33,9 @@ export default {
         Select category
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Human</a></li>
-        <li><a class="dropdown-item" href="#">Alien</a></li>
+        <li><a class="dropdown-item" href="#" @click="filterCharacters('Alive')">Alive</a></li>
+        <li><a class="dropdown-item" href="#" @click="filterCharacters('Dead')">Dead</a></li>
+        <li><a class="dropdown-item" href="#" @click="filterCharacters('Unknown')">Unknown</a></li>
       </ul>
     </div>
   </section>
@@ -32,18 +44,21 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/general.scss' as *;
-@use '../styles/partials/mixins.scss' as *;
 @use '../styles/partials/variables' as *;
 
 section {
   .btn {
     font-weight: 400 !important;
-    color: #fff !important;
-    background-color: #2EA44F !important;
+    color: $primary !important;
+    background-color: $accent !important;
   }
 
   img {
     width: 15%;
+  }
+
+  .dropdown-menu {
+    --bs-dropdown-link-active-bg: #2EA44F !important;
   }
 }
 </style>

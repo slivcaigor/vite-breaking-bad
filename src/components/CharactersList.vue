@@ -22,28 +22,28 @@ export default {
     shiftSlidesRight() {
       this.store.characterList.unshift(this.store.characterList.pop());
     },
-    // The method calls the shiftSlidesLeft method, and then sets the activeImage property to the previous value minus one, modulo the length of the characterList array. This has the effect of showing the next image in the array.
+    // The method calls the shiftSlidesLeft method, and then sets the activeImage property to the previous value minus one. This has the effect of showing the next image in the array.
     nextImage() {
       this.shiftSlidesLeft();
-      this.activeImage = (this.activeImage - 1) % this.store.characterList.length;
+      this.activeImage--;
     },
-    // The method is similar, but calls the shiftSlidesRight method and sets the activeImage property to the previous value plus one, modulo the length of the characterList array. This has the effect of showing the previous image in the array.
+    // The method is similar, but calls the shiftSlidesRight method and sets the activeImage property to the previous value plus one. This has the effect of showing the previous image in the array.
     prevImage() {
       this.shiftSlidesRight();
-      this.activeImage = (this.activeImage + 1) % this.store.characterList.length;
+      this.activeImage++;
     },
-    start() {
-      this.timer = setInterval(() => {
-        this.nextImage();
-      }, 3000);
-    },
+    // start() {
+    //   this.timer = setInterval(() => {
+    //     this.nextImage();
+    //   }, 3000);
+    // },
     pause() {
       clearInterval(this.timer);
     },
   },
-  mounted() {
-    this.start();
-  },
+  // mounted() {
+  //   this.start();
+  // },
 }
 </script>
 
@@ -56,16 +56,14 @@ export default {
         </div>
       </div>
     </div>
-
     <div class="prev" @click="prevImage"></div>
     <div class="next" @click="nextImage"></div>
-
   </div>
-
 </template>
 
 <style lang="scss" scoped>
 @use '../styles/general.scss' as *;
+@use '../styles/partials/mixins' as *;
 
 .container {
   max-width: 1500px !important;
@@ -73,9 +71,7 @@ export default {
 
 .container-slides {
   padding-top: 10vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include center();
   position: relative;
 }
 
