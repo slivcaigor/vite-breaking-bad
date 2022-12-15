@@ -11,13 +11,20 @@ export default {
 </script>
 
 <template>
-  <section>
-    <div class="top-bar"></div>
-    <div class="wrapper">
-      <a href="/">
-        <!-- return the full URL of the image file -->
-        <img :src="getImageURL(`logo.png`)" alt="Rick and Morty Logo">
-      </a>
+  <section class="d-flex align-items-center justify-content-around mt-4">
+    <a href="/">
+      <!-- return the full URL of the image file -->
+      <img :src="getImageURL(`logo.png`)" alt="Rick and Morty Logo">
+    </a>
+
+    <div class="dropdown-center">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Select category
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Human</a></li>
+        <li><a class="dropdown-item" href="#">Alien</a></li>
+      </ul>
     </div>
   </section>
 </template>
@@ -28,18 +35,15 @@ export default {
 @use '../styles/partials/mixins.scss' as *;
 @use '../styles/partials/variables' as *;
 
-.top-bar {
-  background-color: #44281d;
-  height: 2em;
-}
-
 section {
-  text-align: center;
-  background-color: #f0e14a;
+  .btn {
+    font-weight: 400 !important;
+    color: #fff !important;
+    background-color: #2EA44F !important;
+  }
 
   img {
-    width: 20%;
-    padding-bottom: 2em;
+    width: 15%;
   }
 }
 </style>
