@@ -32,18 +32,18 @@ export default {
       this.shiftSlidesRight();
       this.activeImage++;
     },
-    // start() {
-    //   this.timer = setInterval(() => {
-    //     this.nextImage();
-    //   }, 3000);
-    // },
+    start() {
+      this.timer = setInterval(() => {
+        this.nextImage();
+      }, 3000);
+    },
     pause() {
       clearInterval(this.timer);
     },
   },
-  // mounted() {
-  //   this.start();
-  // },
+  mounted() {
+    this.start();
+  },
 }
 </script>
 

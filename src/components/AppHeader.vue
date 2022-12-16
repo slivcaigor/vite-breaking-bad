@@ -8,7 +8,9 @@ export default {
     }
   },
   methods: {
+    // takes a single argument, status, which is passed to the method when it is called.
     filterCharacters(status) {
+      // emit an event named performSearch with the value of the status
       this.$emit('performSearch', status);
     },
     getImageURL: function (imgPath) {

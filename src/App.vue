@@ -15,6 +15,7 @@ export default {
     }
   },
   methods: {
+    // status is appended as a query parameter to the API URL with the key store.apiStatusParameter. If status is alive and store.apiStatusParameter is status, the resulting URL would be ${store.apiURL}?status=alive.
     getCharacters(status) {
 
       let myUrl = store.apiURL;
@@ -42,6 +43,7 @@ export default {
     <div class="ms_wrapper">
 
       <header>
+        <!-- passes a prop called performSearch. The value of the prop is a method called getCharacters -->
         <AppHeader @performSearch="getCharacters" />
       </header>
 
@@ -51,9 +53,6 @@ export default {
 
     </div>
   </section>
-
-
-
 </template>
 
 <style lang="scss" scoped>
